@@ -1,0 +1,42 @@
+<div class="container mt-3">
+  <form [formGroup]="newForm">
+    <mat-card>
+      <div class="row align-items-center form-row">
+        <label for="form-category" class="col-sm-2">Form Category</label>
+        <mat-form-field appearance="outline" class="col-sm-10">
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row align-items-center form-row">
+        <label for="form-title" class="col-sm-2">Form Title</label>
+        <mat-form-field appearance="outline" class="col-sm-10">
+          <input matInput name="form-title" formControlName="title">
+        </mat-form-field>
+      </div>
+      <div class="row align-items-center form-row">
+        <label for="visible" class="col-sm-2">Visible</label>
+        <div class="col-sm-10 row align-items-center">
+          <mat-checkbox class="col-sm-3" formControlName="global">Global</mat-checkbox>
+          <div class="col-sm-5">
+            <mat-checkbox class="me-2 col-sm-4" (change)="isChecked('vertical',$event)">Vertical Market</mat-checkbox>
+            <mat-form-field appearance="outline">
+              <mat-select name="form-category" [disabled]="isVerticalDisabled" formControlName="vertical_market">
+                <mat-option *ngFor="let verticalMarket of verticalMarketList" [value]="verticalMarket.id">{{verticalMarket.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-checkbox class="me-2" (change)="isChecked('company',$event)">Company</mat-checkbox>
+            <mat-form-field appearance="outline">
+              <mat-select name="form-category" [disabled]="isCompanyDisabled" formControlName="company">
+                <mat-option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
